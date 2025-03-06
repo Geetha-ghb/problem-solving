@@ -25,14 +25,22 @@ for num in range(start, end + 1):
         
 # 3. Find the smallest prime digit in a given number
 
-num = int(input("Enter a number: "))
-smallest_prime_digit = 10
-while num > 0:
-    digit = num % 10
-    if digit in (2, 3, 5, 7) and digit < smallest_prime_digit:
-        smallest_prime_digit = digit
-    num //= 10
-if smallest_prime_digit == 10:
-    print("No prime digits found.")
+num = (input("Enter a number: "))
+smallest_prime = None
+for digit in num:
+    digit = int(digit)  
+    if digit > 1:  
+        is_prime = True
+        for i in range(2, digit):
+            if digit % i == 0:
+                is_prime = False
+                break
+        
+        if is_prime:
+            if smallest_prime is None or digit < smallest_prime:
+                smallest_prime = digit
+
+if smallest_prime is not None:
+    print("Smallest prime digit in the given number:", smallest_prime)
 else:
-    print("The smallest prime digit is:", smallest_prime_digit)
+    print("No prime digit found in the given number")
